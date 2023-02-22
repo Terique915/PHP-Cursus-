@@ -4,9 +4,9 @@ $pass= $_POST["password"];
 
 
 $servername = "localhost";
-$username = "id13241015_schoolphp";
-$password = "Soloboy2355%xbox";
-$dbname = "id13241015_schoolphp";
+$username = "id20296794_phpschool";
+$password = "f@egLCkL11[E=KXi";
+$dbname = "id20296794_schoolphp";
 
 try {
     $conn = new PDO("mysql:host=$servername; port=3308; dbname=$dbname", $username, $password);
@@ -27,6 +27,11 @@ while($row = $Results->fetch()) {
         $result = true;
         echo "WELCOME";
         break 1;
+    }
+    else{
+        $result = false;
+        header('location: LoginDB.php');
+
     }
 
 }
