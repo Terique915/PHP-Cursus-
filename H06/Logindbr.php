@@ -17,7 +17,7 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
-$query= ("SELECT email, password FROM logindb WHERE email = '$email' AND  password = '$pass'");
+$query= ("SELECT email, password FROM loginrol WHERE email = '$email' AND  password = '$pass'");
 $Results= $conn->query($query);
 $Results->execute() or die("ERROR 2");
 
