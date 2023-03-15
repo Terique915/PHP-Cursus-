@@ -14,9 +14,6 @@
     <ul>
         <li><a href="H01/helloworld.php">Hoofdstuk 1- Hello World</a> </li>
 
-
-
-
     </ul>
     <ul>
         <h2>Hoofdstuk 2</h2>
@@ -53,7 +50,7 @@
     </ul>
     <ul>
         <h2>Hoofdstuk 7</h2>
-        <li><a href="H07/Login.php">Cookies & Sessions</a></li>
+        <li><a href="H07/Loginrol.php">Cookies & Sessions</a></li>
 
 
     </ul>

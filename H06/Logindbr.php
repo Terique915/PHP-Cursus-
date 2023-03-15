@@ -28,9 +28,10 @@ while($row = $Results->fetch()) {
         echo "WELCOME";
         break 1;
     }
-    else{
+    else if ($_POST['email'] != $email && $_POST['password'] != $pass) {
         $result = false;
-        header('location: LoginDB.php');
+        echo header('location:LoginDB.php');
+        break 1;
 
     }
 
