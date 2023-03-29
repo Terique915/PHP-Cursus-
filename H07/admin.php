@@ -14,6 +14,15 @@ try {
     echo "Connection failed: " . $e->getMessage();
 }
 
+if(isset($_SESSION['user'])){
+    if($_SESSION['rol'] == 0){
+        echo "welcome Admin";
+    }
+    else{
+        echo "you Do not have the right credentials";
+    }
+}
+
 
 
 if (isset($_POST["loguit"])) {
@@ -31,6 +40,6 @@ if (isset($_POST["loguit"])) {
 <h1></h1>
 
 
-<p><a href="Login.php?loguit">Uitloggen </p>
+<p><a href="Loginrol.php">Uitloggen </p>
 </body>
 </html>
