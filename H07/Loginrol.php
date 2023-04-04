@@ -35,9 +35,10 @@ if (isset($_POST['knop'])) {
     $rol = "Admin";
     $email = $_POST['email'];
     $password = $_POST['password'];
+    $role ="User";
 
 
-        $query = "SELECT * FROM loginrol WHERE email = '$email' AND password = '$password' AND rol = '$rol'";
+        $query = "SELECT * FROM loginrol WHERE email = '$email' AND password = '$password' AND rol = '$rol' ";
         $statement = $conn->prepare($query);
         $statement->execute(array($email,$password,$rol));
         $count = $statement->rowCount();
@@ -48,7 +49,11 @@ if (isset($_POST['knop'])) {
          $_SESSION['rol'] = $user['rol'];
             header("location:admin.php");
         }
-
+        else if($count < 1){
+            $_SESSION['user'] = $user['email'];
+            $_SESSION['role'] = $user['role'];
+            header("location:admin.php");
+        }
 
 
 
@@ -69,6 +74,6 @@ if (isset($_POST['knop'])) {
     <input type="submit" name="knop" id ="knop" value="login">
 </form>
 
-<p><a href="Login.php?loguit">Uitloggen </p>
+<p><a href="Loginrol.php?loguit">Uitloggen </p>
 </body>
 </html>
