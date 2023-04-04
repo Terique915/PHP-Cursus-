@@ -18,15 +18,12 @@ if(isset($_SESSION['user'])){
     if($_SESSION['rol'] == 0){
         echo "welcome Admin";
     }
-    else{
-        echo "you Do not have the right credentials";
-    }
+
 }
 
 
 
 if (isset($_POST["loguit"])) {
-    $_SESSION = array();
     session_destroy();
 }
 

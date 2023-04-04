@@ -20,22 +20,13 @@ try {
 $query= ("SELECT email, password FROM loginrol WHERE email = '$email' AND  password = '$pass'");
 $Results= $conn->query($query);
 $Results->execute() or die("ERROR 2");
+$row = $Results ->rowCount();
+ if($row >0){
+     echo"Welcome";
+ }
 
 
-while($row = $Results->fetch()) {
-    if ($_POST['email'] == $email && $_POST['password'] == $pass) {
-        $result = true;
-        echo "WELCOME";
-        break 1;
-    }
-    else if ($_POST['email'] != $email && $_POST['password'] != $pass) {
-        $result = false;
-        echo header('location:LoginDB.php');
-        break 1;
 
-    }
-
-}
 
 
 

@@ -48,9 +48,8 @@ if (isset($_POST['knop'])) {
          $_SESSION['rol'] = $user['rol'];
             header("location:admin.php");
         }
-        else{
-            header("location:Loginrol.php");
-        }
+
+
 
 
 
