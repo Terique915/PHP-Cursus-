@@ -1,5 +1,4 @@
 <?php
-session_start();
 $servername = "localhost";
 $username = "id20296794_phpschool";
 $password = "f@egLCkL11[E=KXi";
@@ -12,19 +11,4 @@ try {
     //echo "Connected successfully";
 } catch (PDOException $e) {
     echo "Connection failed: " . $e->getMessage();
-$_SESSION['user'];
 }
-if (isset($_POST["loguit"])) {
-    $_SESSION = array();
-    session_destroy();
-}
-
-?>
-    <title>Title</title>
-</head>
-<body>
-
-
-<p><a href="Login.php?loguit">Uitloggen </p>
-</body>
-</html>

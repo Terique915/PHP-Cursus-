@@ -15,7 +15,7 @@ try {
 }
 
 if(isset($_SESSION['user'])){
-    if($_SESSION['rol'] == 0){
+    if($_SESSION['user'] == 0){
         echo "welcome Admin";
     }
 
@@ -27,7 +27,9 @@ else{
 
 
 if (isset($_POST["loguit"])) {
-    session_destroy();
+$_SESSION= array();
+session_destroy();
+
 }
 
 
