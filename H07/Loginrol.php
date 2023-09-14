@@ -2,64 +2,44 @@
 
 session_start();
 require_once ('config.php');
-$servername = "localhost";
-$username = "id20296794_phpschool";
-$password = "f@egLCkL11[E=KXi";
-$dbname = "id20296794_schoolphp";
 
+$email="";
+if ($_SERVER['REQUEST_METHOD']==='POST') {
+    if(isset($_POST['email'])){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+    }
 
-try {
-    $conn = new PDO("mysql:host=$servername; port=3308; dbname=$dbname", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Connected successfully";
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
 
 }
-if (isset($_POST['knop'])) {
-    $rol = "Admin";
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $role ="User";
-if (empty($email || empty($pass))) {
-    echo "full in required fields";
-}
-else{
-        $query = "SELECT * FROM loginrol WHERE email = '$email' AND password = '$password' AND rol = '$rol' ";
-        $statement = $conn->prepare($query);
-        $statement->execute(array($email,$password,$rol));
+
+$stmt = $conn->prepare("SELECT * FROM loginrol WHERE email =?");
+$stmt-> execute([$email]);
+$user =$stmt-> fetch(PDO::FETCH_ASSOC);
 
 
-        if ($query->rowCount() >= 1) {
-            if($rol== true){
-                $_SESSION['user']=$rol ;
-                header("location:admin.php");
-            }
 
+if ($user) {
+    // User found by email
+    if ($password === $user['password']) {
+        if (isset($user['userID'])) {
+            $_SESSION['userID'] = $user['userID'];
+            $_SESSION['email'] = $user['email'];
+            header('Location: admin.php');
+            exit();
         }
-        else if($rol == false){
-           $_SESSION['user']=$role;
-            header("location:user.php");
-        }
-
+    } else {
+        $error = "Wrong Username and or Password";
+    }
 }
-
-}
-if (isset($_POST["loguit"])) {
-    $_SESSION= array();
-    session_destroy();
-
-}
-
 ?>
-
-    <title>Title</title>
+<title>Title</title>;
 </head>
 <body>
+<?php if (isset($error)) { echo "<p>$error</p>"; } ?>
 <h1></h1>
-<form action="<?php echo  $_SERVER['PHP_SELF'];?>" method="post">
-    <input type="text" name= "email" id="email" value="">
+<form  method="POST">
+    <input type="text" name= "email" id="email" value="" required>
     <input type= "password" name="password" id="password" value="">
     <input type="submit" name="knop" id ="knop" value="login">
 </form>
